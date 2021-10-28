@@ -1,10 +1,26 @@
 
 <h2>{{ title }}</h2>
 
+<nav>
+  <a [routerLink]="[ '/heroes']">Héroes</a>
+  <a routerLink="/dashboard">Dashboard</a>
+</nav>
+
 
 <section class="sec-heroeslist">
-  <app-heroes></app-heroes>
+
+  <!-- 
+    ya no se utiliza porque la aplicacion solo mostrará
+     el Componente Heroes cuando el usuario navegue  hacia el
+    <app-heroes></app-heroes> 
+  --> 
+
+  <router-outlet></router-outlet> 
+  <!--
+    El router-outlet le dice al enrutador donde mostrar las vistas enrutadas
+   -->
+
   <app-messages></app-messages>
 </section>
 
-<!-- <router-outlet></router-outlet> -->
+

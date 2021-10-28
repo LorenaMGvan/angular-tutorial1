@@ -18,4 +18,9 @@ export class HeroService {
     return of (HEROES); // devuelve un observable <Hero[]> que emite un valor único, "el conjunto de héroes simulados"
   }
 
+  getHero(id: number): Observable<Hero | undefined> {
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of (HEROES.find(hero => hero.id == id));
+  }
+
 }
