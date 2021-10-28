@@ -34,8 +34,19 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = heroe;
   }
   
+  // getHeroesCompo (): void {
+  //   this.heroes = this.heroService.getHeroes();
+  // }
+
+  // La nueva versión espera a que el 'Observable' emita una serie de héroes,— que podría suceder ahora o varios minutos a partir de ahora. El método subscribe() pasa el arreglo emitida a la devolución de llamada, que establece la propiedad 'heroes' del componente.
+  // Este enfoque asincrónico funcionará cuando el HeroService solicite héroes del servidor.
+
   getHeroesCompo (): void {
-    this.heroes = this.heroService.getHeroes();
+    this.heroService.getHeroes()
+          .subscribe( heroes => this.heroes = heroes);
+          // .subscribe(  (heroesR) => {
+          //     return  this.heroes = heroesR;
+          // })
   }
   
   ngOnInit(): void {
