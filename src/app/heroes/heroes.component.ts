@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';  
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 
 
@@ -27,18 +28,31 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
   selectedHero!: Hero;
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private messageService: MessageService) { }
   
   
   onSelectHeroe( heroe: Hero): void {
     this.selectedHero = heroe;
+    this.messageService.add(`Heroes componente: héroe seleccionado id= ${heroe.id}`);
   }
   
+  // getHeroesCompo (): void {
+  //   this.heroes = this.heroService.getHeroes();
+  // }
+
+  // La nueva versión espera a que el 'Observable' emita una serie de héroes,— que podría suceder ahora o varios minutos a partir de ahora. El método subscribe() pasa el arreglo emitida a la devolución de llamada, que establece la propiedad 'heroes' del componente.
+  // Este enfoque asincrónico funcionará cuando el HeroService solicite héroes del servidor.
   getHeroesCompo (): void {
-    this.heroes = this.heroService.getHeroes();
+    this.heroService.getHeroes()
+          .subscribe( heroes => this.heroes = heroes);
+          // .subscribe(  (heroesR) => {
+          //     return  this.heroes = heroesR;
+          // })
   }
   
   ngOnInit(): void {
     this.getHeroesCompo();
   }
+
+
 }
