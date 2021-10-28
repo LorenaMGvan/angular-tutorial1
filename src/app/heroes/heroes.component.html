@@ -1,4 +1,3 @@
-<section class="sec-heroeslist">
   <h2>lista de Héroes</h2>
 
   <ul class="list-heroes">
@@ -9,15 +8,6 @@
     </li>
   </ul>
 
+  <app-hero-detail [heroD]="selectedHero" ></app-hero-detail>
 
-  <div class="hero-detalle" *ngIf="selectedHero">
-    <h2>{{selectedHero.name | uppercase}} Detalles</h2>
-    <div><span>id: </span>{{ selectedHero.id }}</div>
-    <div>
-      <label>name:
-        <input [(ngModel)]="selectedHero.name" placeholder="name" />
-      </label>
-    </div>
-  </div>
 
-</section>
