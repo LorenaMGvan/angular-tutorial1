@@ -1,4 +1,46 @@
 .sec-heroeslist {  
-  width: 80%;
   margin: auto;
+  width: 80%;
+}
+
+.list-heroes {
+  padding-left: 0;
+
+  li {
+    align-items: center;    
+    background: linear-gradient(to right, #2398f6 50%, #eee 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all .2s ease-out;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    list-style: none;
+    margin-bottom: 10px;
+
+    &.selectedItem {      
+      background-position: left bottom;
+      color: #fff;
+    }
+  }
+
+}
+
+.badge {
+  background: #2398f6;
+  color: #fff;
+  display: inline-flex;
+  padding: 5px;
+  margin-right: 20px;
+}
+
+
+.hero-detalle {
+  background: #eee;
+  padding: 20px 15px;
+  border: dashed 3px #ddd;
+
+  h2 {
+    margin-top: 0;
+  }
 }
