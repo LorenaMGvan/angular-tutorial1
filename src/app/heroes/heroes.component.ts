@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';  
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-
+//https://docs.angular.lat/tutorial/toh-pt6
 
 @Component({
   selector: 'app-heroes',

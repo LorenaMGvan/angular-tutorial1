@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Hero } from './hero';
-import { HEROES } from './mock-heroes';
-import { MessageService } from './message.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable , of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+
+import { Hero } from './hero';
+import { MessageService } from './message.service';
 
 
 @Injectable({
@@ -10,17 +12,50 @@ import { Observable , of } from 'rxjs';
 })
 export class HeroService {
 
-  constructor( private messageService: MessageService) { }
+  private heroesUrl = 'api/heroes';  // URL to web api
 
-  getHeroes(): Observable <Hero[]> {
-    // mandar un mensaje cuando se busquen los hérores
-    this.messageService.add('HeroService: fetched heroes');
-    return of (HEROES); // devuelve un observable <Hero[]> que emite un valor único, "el conjunto de héroes simulados"
+  constructor( 
+    private http:HttpClient,
+    private messageService: MessageService) { }
+
+  // getHeroes(): Observable<Hero[]> {
+  //   return this.http.get<Hero[]>(this.heroesUrl);
+  // }
+
+  private handleError<T>(operation = 'opertion', result?:T) {
+    return (error: any): Observable<T> => {
+      // TODO: envía el error a la infraestructura de registro remoto
+      console.error(error);
+
+    // TODO: mejor trabajo de transformación del error para el consumo del usuario
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Deje que la aplicación siga ejecutándose devolviendo un resultado vacío.
+      return of(result as T);
+    }
   }
 
-  getHero(id: number): Observable<Hero | undefined> {
-    this.messageService.add(`HeroService: fetched hero id=${id}`);
-    return of (HEROES.find(hero => hero.id == id));
+
+  getHeroes(): Observable<Hero[]> {
+    return this.http.get<Hero[]>(this.heroesUrl)
+            .pipe(
+              tap(_=> this.log('fetched heroes')),
+              catchError(this.handleError<Hero[]>('getHeroes', [] ))
+            );
+  }
+
+  getHero(id: number):Observable<Hero> {
+    const url = `${this.heroesUrl}/${id}`;
+
+    return this.http.get<Hero>(url).pipe(
+      tap(_ => this.log(`fetched hero id= ${id}`)),
+      catchError(this.handleError<Hero>(`get Hero id=${id}`))
+    );
+  }
+
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`HeroService private log: ${message}`);
   }
 
 }
