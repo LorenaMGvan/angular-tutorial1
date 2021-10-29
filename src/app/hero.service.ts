@@ -13,6 +13,10 @@ import { MessageService } from './message.service';
 export class HeroService {
 
   private heroesUrl = 'api/heroes';  // URL to web api
+  
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor( 
     private http:HttpClient,
@@ -35,6 +39,10 @@ export class HeroService {
     }
   }
 
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`HeroService private log: ${message}`);
+  }
 
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
@@ -53,9 +61,19 @@ export class HeroService {
     );
   }
 
-  /** Log a HeroService message with the MessageService */
-  private log(message: string) {
-    this.messageService.add(`HeroService private log: ${message}`);
+  /*
+     el método put, toma 3 parámetros
+     1) la URL
+     2) los datos para actualizar (El héroe modificado)
+     3) opciones
+  */
+
+  updateHero(hero: Hero):Observable<any> {
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+        tap(_=> this.log(`update hero id=${hero.id}`)),
+        catchError(this.handleError <any>('updateHero'))
+    )
   }
+  
 
 }
