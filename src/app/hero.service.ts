@@ -60,14 +60,12 @@ export class HeroService {
       catchError(this.handleError<Hero>(`get Hero id=${id}`))
     );
   }
-
   /*
      el método put, toma 3 parámetros
      1) la URL
      2) los datos para actualizar (El héroe modificado)
      3) opciones
   */
-
   updateHero(hero: Hero):Observable<any> {
     return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
         tap(_=> this.log(`update hero id=${hero.id}`)),
@@ -79,6 +77,16 @@ export class HeroService {
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
         tap((newHero: Hero) => this.log(`added hero w/ id= ${newHero.id}`)),
         catchError(this.handleError<Hero>('addHero'))
+    );
+  }
+
+  deleteHero(hero: Hero | number): Observable<Hero> {
+    const id = typeof hero === 'number' ? hero : hero.id;
+    const url = `${this.heroesUrl}/${id}`;
+
+    return this.http.delete<Hero>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`delete hero id=${id}`)),
+      catchError(this.handleError<Hero>('deleteHero'))
     );
   }
   
