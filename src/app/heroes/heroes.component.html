@@ -1,5 +1,14 @@
   <h2>lista de Héroes</h2>
 
+  <div>
+    <label>Nombre del Héroe</label>
+    <input #heroName>
+    <button (click)="add(heroName.value); heroName.value=''">
+      Agregar
+    </button>
+  </div>
+
+
   <ul class="list-heroes">
     <li *ngFor="let item of heroes">
       <a routerLink="/detalle/{{ item.id }}">
