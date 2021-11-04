@@ -1,1 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  text-align: center;
+}
+
+.box-userinput {
+
+	input {
+		border: solid 1px #ccc;
+		color: #444;
+		margin-right: 5px;
+		outline: none;
+		padding: 10px 5px;
+	}
+	.btn {
+		background-color: #0069d9;
+		border: none;
+		color: #fff;
+		font-weight: 600;
+		min-height: 35px;
+	}
+}
+
+.sec-heroeslist {
+	margin: auto;
+	width: 80%;
+}
+
+.list-heroes {
+	display: grid;
+	grid-gap: 5px 14px;
+	grid-template-columns: 2fr 2fr;
+	margin: auto;
+	padding-left: 0;
+
+	li {
+		align-items: center;
+		background: linear-gradient(to right, #2398f6 50%, #eee 50%);
+		background-position: right bottom;
+		background-size: 200% 100%;
+		color: #000;
+		cursor: pointer;
+		display: flex;
+		list-style: none;
+		margin-bottom: 10px;
+		transition: all .2s ease-out;
+
+		&.selectedItem {
+			background-position: left bottom;
+			color: #fff;
+		}
+
+	}
+}
+.badge {
+	background: #2398f6;
+	color: #fff;
+	display: inline-flex;
+	left: 0;
+	margin-right: 20px;
+	padding: 5px;
+	position: absolute;
+	top: 0;
+}
+
+.hero-detalle {
+	background: #eee;
+	border: dashed 3px #ddd;
+	padding: 20px 15px;
+
+	h2 {
+		margin-top: 0;
+	}
+}
+.heroe-img img {
+	width: 80px;
+}
+.heroe-enlace {
+	position: relative;
+}
+.heroe-enlace figure {
+	margin: 0;
+	padding: 0;
+}
+.heroe-action {
+	padding: 10px;
+	position: relative;
+	width: 100%;
+}
+
+
+@media (min-width: 992px) { 
+
+	.list-heroes {		
+		width: 30%;
+	}		
+}

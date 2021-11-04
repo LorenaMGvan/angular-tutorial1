@@ -1,9 +1,8 @@
   <h2>lista de Héroes</h2>
 
-  <div>
-    <label>Nombre del Héroe</label>
-    <input #heroName>
-    <button (click)="add(heroName.value); heroName.value=''">
+  <div class="box-userinput">    
+    <input #heroName placeholder="Nombre del Héroe">
+    <button class="btn" (click)="add(heroName.value); heroName.value=''">
       Agregar
     </button>
   </div>
@@ -11,15 +10,22 @@
 
   <ul class="list-heroes">
     <li *ngFor="let item of heroes">
-      <a routerLink="/detalle/{{ item.id }}">
-        <span class="badge"> {{item.id}} </span> {{item.name}}
-      </a>
 
-      <button class="delete" 
-              title="Eliminar Héroe"
-              (click)="delete(item)">
-        X
-      </button>
+      <a class="heroe-enlace" routerLink="/detalle/{{ item.id }}">
+        <figure class="heroe-img">
+          <img src="{{item.photo}}" alt="" />
+        </figure>
+        <span class="badge"> {{item.id}} </span>
+      </a>      
+
+      <div class="heroe-action" routerLink="/detalle/{{ item.id }}">        
+        <h4>{{item.name}}</h4>
+        <button class="delete" 
+                title="Eliminar Héroe"
+                (click)="delete(item)">
+          Remover
+        </button>
+      </div>
 
     </li>
   </ul>

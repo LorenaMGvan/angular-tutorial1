@@ -1,46 +1,11 @@
-.sec-heroeslist {  
-  margin: auto;
-  width: 80%;
+.delete {
+	border: solid 2px #2398f6;
+	border-radius: 5px;
+	color: #2398f6;
+	cursor: pointer;
+	padding: 7px 10px;
 }
 
-.list-heroes {
-  padding-left: 0;
-
-  li {
-    align-items: center;    
-    background: linear-gradient(to right, #2398f6 50%, #eee 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-    transition: all .2s ease-out;
-    color: #000;
-    cursor: pointer;
-    display: flex;
-    list-style: none;
-    margin-bottom: 10px;
-
-    &.selectedItem {      
-      background-position: left bottom;
-      color: #fff;
-    }
-  }
-
-}
-
-.badge {
-  background: #2398f6;
-  color: #fff;
-  display: inline-flex;
-  padding: 5px;
-  margin-right: 20px;
-}
-
-
-.hero-detalle {
-  background: #eee;
-  padding: 20px 15px;
-  border: dashed 3px #ddd;
-
-  h2 {
-    margin-top: 0;
-  }
+.box-userinput {
+	margin: 20px auto;
 }

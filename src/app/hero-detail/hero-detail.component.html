@@ -1,15 +1,19 @@
 
 <div class="hero-detalle" *ngIf="heroD">
 
-  <h2>{{heroD.name | uppercase}} Detalles</h2>
-  <div><span>id: </span>{{ heroD.id }}</div>
-  <div>
-    <label>name:
+  <h2>{{heroD.name | uppercase}}</h2>  
+  <div class="box-userinput">
+    <label>Nombre:
       <input [(ngModel)]="heroD.name" placeholder="name" />
     </label>
+    
+    <figure class="heroe-img">
+      <img src="{{heroD.photo}}" alt="" />
+      <span class="badge"> {{heroD.id}} </span>    
+    </figure>
+    <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti error officia ea iste enim ipsam a mollitia atque voluptates quibusdam fugiat tempore, nam voluptate dolor quisquam ullam, tenetur nobis facere.</p>
   </div>
 
-  <button (click)="save()">Guardar</button>
-
-  <button (click)="goBack()">Atrás</button>
+  <button class="btn-success" (click)="save()">Guardar</button>
+  <button class="btn-link" (click)="goBack()">Atrás</button>
 </div>

@@ -1,6 +1,12 @@
 <div id="search-component">
   <h4>Buscar Héroe</h4>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <div class="box-userinput">
+    <input placeholder="Buscar Héroe" 
+            #searchBox 
+            id="search-box" 
+            (input)="search(searchBox.value)" />
+  </div>
 
   <ul class="search-result">
     <!-- el signo de "$" despues de heroes, es una convención 
